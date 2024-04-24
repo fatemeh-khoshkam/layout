@@ -1,5 +1,10 @@
 import Logo from "./Logo";
-import { StyledLink } from "../styles/Navbar.styled";
+import {
+  NavbarWrapper,
+  NavLinkWrapper,
+  NavLink,
+  NavLinkItem,
+} from "../styles/Navbar.styled";
 
 function Navbar() {
   const links = [
@@ -13,14 +18,16 @@ function Navbar() {
   ];
 
   return (
-    <>
+    <NavbarWrapper>
       <Logo></Logo>
-      {links.map((link) => (
-        <StyledLink key={link.page} to={link.href}>
-          {link.page}
-        </StyledLink>
-      ))}
-    </>
+      <NavLinkWrapper>
+        {links.map((link) => (
+          <NavLink key={link.page}>
+            <NavLinkItem to={link.href}>{link.page}</NavLinkItem>
+          </NavLink>
+        ))}
+      </NavLinkWrapper>
+    </NavbarWrapper>
   );
 }
 

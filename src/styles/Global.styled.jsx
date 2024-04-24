@@ -29,6 +29,11 @@ ul {
 a {
     text-decoration: none;
 }
+.container{
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+}
 `;
 
 export default GlobalStyles;

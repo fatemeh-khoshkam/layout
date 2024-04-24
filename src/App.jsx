@@ -6,8 +6,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <Outlet />
-      <GlobalStyles />
+      <div className="container">
+        <Outlet />
+        <GlobalStyles />
+      </div>
     </>
   );
 }
