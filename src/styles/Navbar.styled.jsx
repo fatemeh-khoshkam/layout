@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const LogoImg = styled.img`
   align-self: start;
@@ -19,9 +19,11 @@ const NavLinkWrapper = styled.ul`
   gap: 3rem;
 `;
 
-const NavLink = styled.li``;
+const LinkWrapper = styled.li`
+  transition: all 0.2s;
+`;
 
-const NavLinkItem = styled(Link)`
+const NavLinkItem = styled(NavLink)`
   text-decoration: none;
   font-weight: bold;
   color: #202121cf;
@@ -30,6 +32,13 @@ const NavLinkItem = styled(Link)`
   &:hover {
     color: #d81717;
   }
+
+  &.${(props) => props.activeclassname} {
+    background-color: #d81717;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    color: snow;
+  }
 `;
 
-export { LogoImg, NavbarWrapper, NavLinkItem, NavLinkWrapper, NavLink };
+export { LogoImg, NavbarWrapper, NavLinkItem, NavLinkWrapper, LinkWrapper };

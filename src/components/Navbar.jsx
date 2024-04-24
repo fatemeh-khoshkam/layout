@@ -2,7 +2,7 @@ import Logo from "./Logo";
 import {
   NavbarWrapper,
   NavLinkWrapper,
-  NavLink,
+  LinkWrapper,
   NavLinkItem,
 } from "../styles/Navbar.styled";
 
@@ -22,9 +22,15 @@ function Navbar() {
       <Logo></Logo>
       <NavLinkWrapper>
         {links.map((link) => (
-          <NavLink key={link.page}>
-            <NavLinkItem to={link.href}>{link.page}</NavLinkItem>
-          </NavLink>
+          <LinkWrapper key={link.page}>
+            <NavLinkItem
+              key={link.page}
+              to={link.href}
+              activeclassname="active"
+            >
+              {link.page}
+            </NavLinkItem>
+          </LinkWrapper>
         ))}
       </NavLinkWrapper>
     </NavbarWrapper>
