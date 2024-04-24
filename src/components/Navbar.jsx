@@ -1,12 +1,17 @@
+import { useState } from "react";
 import Logo from "./Logo";
 import {
   NavbarWrapper,
-  NavLinkWrapper,
+  NavLinksWrapper,
   LinkWrapper,
   NavLinkItem,
+  ResponsiveIcon,
 } from "../styles/Navbar.styled";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
+  const [active, setActive] = useState(false);
+
   const links = [
     {
       page: "Home",
@@ -20,7 +25,20 @@ function Navbar() {
   return (
     <NavbarWrapper>
       <Logo></Logo>
-      <NavLinkWrapper>
+      <ResponsiveIcon
+        icon={faBars}
+        onClick={() => {
+          setActive((preActive) => !preActive);
+        }}
+      ></ResponsiveIcon>
+      <NavLinksWrapper active={active ? "true" : "false"}>
+        <ResponsiveIcon
+          className="closeIcon"
+          icon={faXmark}
+          onClick={() => {
+            setActive((preActive) => !preActive);
+          }}
+        ></ResponsiveIcon>
         {links.map((link) => (
           <LinkWrapper key={link.page}>
             <NavLinkItem
@@ -32,7 +50,7 @@ function Navbar() {
             </NavLinkItem>
           </LinkWrapper>
         ))}
-      </NavLinkWrapper>
+      </NavLinksWrapper>
     </NavbarWrapper>
   );
 }
