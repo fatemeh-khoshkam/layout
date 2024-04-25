@@ -18,19 +18,23 @@ const NavbarWrapper = styled.nav`
 const NavLinksWrapper = styled.ul`
   display: flex;
   gap: 3rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   @media (max-width: 704px) {
     display: ${(props) => (props.active === "true" ? "flex" : "none")};
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
     position: fixed;
     top: 0;
     right: 0;
     color: #0a172e;
-    background-color: #e66464;
+    background-color: snow;
     min-height: 100%;
     width: 30%;
     justify-content: center;
+    z-index: 10;
   }
 `;
 
@@ -42,7 +46,9 @@ const NavLinkItem = styled(NavLink)`
   text-decoration: none;
   font-weight: bold;
   color: #202121cf;
-  transition: all 0.2s;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     color: #d81717;
@@ -64,21 +70,31 @@ const ResponsiveIcon = styled(FontAwesomeIcon)`
   font-size: 2rem;
   cursor: pointer;
 
-  ${(props) =>
-    (props["data-icon"] =
-      "xmark" &&
-      `
-        position: fixed;
-        top: 2rem;
-   `)}
-
-  .closeIcon {
-    position: fixed;
-    top: 2rem;
-  }
+  ${(props) => props.className === "close" && ` position: fixed; top: 2rem;`}
 
   @media (max-width: 704px) {
     display: block;
+  }
+`;
+
+const Overlay = styled.div`
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  background: rgb(166 170 198 / 71%);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
+  @media (max-width: 704px) {
+    visibility: ${(props) => (props.active === "true" ? "visible" : "hidden")};
+    opacity: ${(props) => (props.active === "true" ? 1 : 0)};
   }
 `;
 
@@ -89,4 +105,5 @@ export {
   NavLinksWrapper,
   LinkWrapper,
   ResponsiveIcon,
+  Overlay,
 };

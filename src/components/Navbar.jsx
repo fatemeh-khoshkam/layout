@@ -6,6 +6,7 @@ import {
   LinkWrapper,
   NavLinkItem,
   ResponsiveIcon,
+  Overlay,
 } from "../styles/Navbar.styled";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -22,22 +23,23 @@ function Navbar() {
     { page: "Sign Up", href: "/signUp" },
   ];
 
+  const closeMenuHandler = () => {
+    setActive((preActive) => !preActive);
+  };
+
   return (
     <NavbarWrapper>
       <Logo></Logo>
-      <ResponsiveIcon
-        icon={faBars}
-        onClick={() => {
-          setActive((preActive) => !preActive);
-        }}
-      ></ResponsiveIcon>
+      <ResponsiveIcon icon={faBars} onClick={closeMenuHandler}></ResponsiveIcon>
+      <Overlay
+        onClick={closeMenuHandler}
+        active={active ? "true" : "false"}
+      ></Overlay>
       <NavLinksWrapper active={active ? "true" : "false"}>
         <ResponsiveIcon
-          className="closeIcon"
+          className="close"
           icon={faXmark}
-          onClick={() => {
-            setActive((preActive) => !preActive);
-          }}
+          onClick={closeMenuHandler}
         ></ResponsiveIcon>
         {links.map((link) => (
           <LinkWrapper key={link.page}>
